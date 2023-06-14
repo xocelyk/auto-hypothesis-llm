@@ -37,7 +37,7 @@ def create_prompt(num_shots, train_data=None, test_data=None, messages=[], train
     if test_mode:
         test_ts, test_label = get_test_ts_label(test_data)
         messages.append({"role": "user", "content": ts_to_string(test_ts)})
-        
+
     return messages
 
 def get_test_ts_label(test_data):
@@ -66,3 +66,4 @@ def get_response(prompt, temperature=0.5):
         temperature=temperature,
     )
     return response.choices[0]['message']['content']
+

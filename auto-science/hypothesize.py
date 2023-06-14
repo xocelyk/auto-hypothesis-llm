@@ -24,8 +24,3 @@ def get_hypothesis(train_data, temperature=0.5, sample_size=16):
     response = get_response(prompt, temperature)
     return response
 
-
-
-
-
-

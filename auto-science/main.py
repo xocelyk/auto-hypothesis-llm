@@ -13,8 +13,8 @@ test_validation_data_keys = test_validation_data_keys[:test_size]
 test_validation_data = {key: test_validation_data[key] for key in test_validation_data_keys}
 
 # get hypothesis
-# hypothesis = get_hypothesis(train_data, hypothesis_temperature, sample_size)
-hypothesis = "Based on the data provided, I can hypothesize that cities in North America tend to have a wider range of temperatures throughout the year compared to cities outside of North America. This is because North America experiences four distinct seasons, while other regions may have less variation in temperature throughout the year. Additionally, cities in North America tend to have colder winters and hotter summers compared to cities outside of North America. However, it is important to note that this hypothesis is based on a limited set of data and may not be applicable to all cities in North America or outside of North America. As more data is collected, this hypothesis can be refined and improved."
+hypothesis = get_hypothesis(train_data, hypothesis_temperature, sample_size)
+# hypothesis = "Based on the data provided, I can hypothesize that cities in North America tend to have a wider range of temperatures throughout the year compared to cities outside of North America. This is because North America experiences four distinct seasons, while other regions may have less variation in temperature throughout the year. Additionally, cities in North America tend to have colder winters and hotter summers compared to cities outside of North America. However, it is important to note that this hypothesis is based on a limited set of data and may not be applicable to all cities in North America or outside of North America. As more data is collected, this hypothesis can be refined and improved."
 # hypothesis = 'North American cities are very cold. Only those cities that are very cold throughout the year are in North America. Further, only cities with low variance in temperature are in North America. Finally, only cities with low variance in temperature are in North America.'
 print()
 print(hypothesis)

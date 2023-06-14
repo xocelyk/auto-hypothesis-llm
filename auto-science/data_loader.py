@@ -17,41 +17,38 @@ def load_data():
     return train_data, test_icl_data, test_validation_data
 
 if __name__ == '__main__':
-    CREATE = False
+    data_dir = '../data/'
+    filename = 'city_temperature.csv'
+    df = pd.read_csv(data_dir + filename)
+    df['Region'].value_counts()/len(df)
+    yes_label = 'North America'
+    df['Label'] = df.apply(lambda x: 1 if x['Region'] == yes_label else 0, axis=1)
+    df.replace(-99.0, np.nan, inplace=True)
+    df.dropna(subset=['AvgTemperature'], inplace=True)
+    df['State'].fillna('NA', inplace=True)
+    df = df.groupby(['Year', 'Region', 'Country', 'State', 'City'])['AvgTemperature'].apply(list)
+    df = df.reset_index()
+    df['Label'] = df.apply(lambda x: 1 if x['Region'] == yes_label else 0, axis=1)
+    df['len_ts'] = df['AvgTemperature'].apply(lambda x: len(x))
 
-    if CREATE:
-        data_dir = '../data/'
-        filename = 'city_temperature.csv'
-        df = pd.read_csv(data_dir + filename)
-        df['Region'].value_counts()/len(df)
-        yes_label = 'North America'
-        df['Label'] = df.apply(lambda x: 1 if x['Region'] == yes_label else 0, axis=1)
-        df.replace(-99.0, np.nan, inplace=True)
-        df.dropna(subset=['AvgTemperature'], inplace=True)
-        df['State'].fillna('NA', inplace=True)
-        df = df.groupby(['Year', 'Region', 'Country', 'State', 'City'])['AvgTemperature'].apply(list)
-        df = df.reset_index()
-        df['Label'] = df.apply(lambda x: 1 if x['Region'] == yes_label else 0, axis=1)
-        df['len_ts'] = df['AvgTemperature'].apply(lambda x: len(x))
+    def day_ts_to_month_ts(ts):
+        months = [0, 31, 31+28, 31+28+31, 31+28+31+30, 31+28+31+30+31, 31+28+31+30+31+30, 31+28+31+30+31+30+31, 31+28+31+30+31+30+31+31, 31+28+31+30+31+30+31+31+30, 31+28+31+30+31+30+31+31+30+31, 31+28+31+30+31+30+31+31+30+31+30, 31+28+31+30+31+30+31+31+30+31+30+31]
+        if len(ts) == 366: # leap year
+            for i in range(2, 13):
+                months[i] += 1
+        elif len(ts) != 365:
+            return None
+        month_ts = []
+        for i in range(1, 13):
+            month_ts.append(int(round(np.mean(ts[months[i-1]:months[i]]), 0)))
+        return month_ts
 
-        def day_ts_to_month_ts(ts):
-            months = [0, 31, 31+28, 31+28+31, 31+28+31+30, 31+28+31+30+31, 31+28+31+30+31+30, 31+28+31+30+31+30+31, 31+28+31+30+31+30+31+31, 31+28+31+30+31+30+31+31+30, 31+28+31+30+31+30+31+31+30+31, 31+28+31+30+31+30+31+31+30+31+30, 31+28+31+30+31+30+31+31+30+31+30+31]
-            if len(ts) == 366: # leap year
-                for i in range(2, 13):
-                    months[i] += 1
-            elif len(ts) != 365:
-                return None
-            month_ts = []
-            for i in range(1, 13):
-                month_ts.append(int(round(np.mean(ts[months[i-1]:months[i]]), 0)))
-            return month_ts
+    df['month_ts'] = df['AvgTemperature'].apply(day_ts_to_month_ts)
+    df['month_ts'] = df['AvgTemperature'].apply(day_ts_to_month_ts)
+    df.dropna(inplace=True)
+    df[['temp1', 'temp2', 'temp3', 'temp4', 'temp5', 'temp6', 'temp7', 'temp8', 'temp9', 'temp10', 'temp11', 'temp12']] = pd.DataFrame(df['month_ts'].tolist(), index=df.index)
+    data_dict = df[['Year', 'Region', 'Country', 'State', 'City', 'month_ts', 'Label']].rename(columns={'month_ts': 'MonthlyAvgTemperature'}).to_dict(orient='index')
 
-        df['month_ts'] = df['AvgTemperature'].apply(day_ts_to_month_ts)
-        df['month_ts'] = df['AvgTemperature'].apply(day_ts_to_month_ts)
-        df.dropna(inplace=True)
-        df[['temp1', 'temp2', 'temp3', 'temp4', 'temp5', 'temp6', 'temp7', 'temp8', 'temp9', 'temp10', 'temp11', 'temp12']] = pd.DataFrame(df['month_ts'].tolist(), index=df.index)
-        data_dict = df[['Year', 'Region', 'Country', 'State', 'City', 'month_ts', 'Label']].rename(columns={'month_ts': 'MonthlyAvgTemperature'}).to_dict(orient='index')
-
-        with open('../data/data_dict.pkl', 'wb') as handle:
-            pickle.dump(data_dict, handle)
+    with open('../data/data_dict.pkl', 'wb') as handle:
+        pickle.dump(data_dict, handle)
 

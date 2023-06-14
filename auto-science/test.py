@@ -11,8 +11,6 @@ openai.api_version = "2023-05-15"
 deployment_name='gpt-35-turbo-1'
 
 def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, verbose=True):
-    # try no shot for now
-
     # set up for stat collection
     first = True
     correct = 0
