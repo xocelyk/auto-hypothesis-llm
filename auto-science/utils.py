@@ -4,11 +4,22 @@ import numpy as np
 import openai
 from data_loader import load_data
 
-openai.api_key = "ca392a5651064a37b2207fc766e8a3ae"
-openai.api_base = "https://text-and-code-1.openai.azure.com/"
-openai.api_type = 'azure'
-openai.api_version = "2023-05-15"
-deployment_name='gpt-35-turbo-1'
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_key = os.getenv('API_KEY')
+api_base = os.getenv('API_BASE')
+api_type = os.getenv('API_TYPE')
+api_version = os.getenv('API_VERSION')
+deployment_name = os.getenv('DEPLOYMENT_NAME')
+
+openai.api_key = api_key
+openai.api_base = api_base
+openai.api_type = api_type
+openai.api_version = api_version
+deployment_name = deployment_name
 
 def get_train_ts_label(sample_size, train_data):
     ts_list = []
@@ -35,7 +46,7 @@ def create_prompt(num_shots, train_data=None, test_data=None, messages=[], train
             messages.append({"role": "assistant", "content": label_to_string(train_label_list[i])})
     
     if test_mode:
-        test_ts, test_label = get_test_ts_label(test_data)
+        test_ts, _ = get_test_ts_label(test_data)
         messages.append({"role": "user", "content": ts_to_string(test_ts)})
 
     return messages
