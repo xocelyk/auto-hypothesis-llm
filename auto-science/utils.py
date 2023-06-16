@@ -28,7 +28,8 @@ def get_train_ts_label(sample_size, train_data):
     np.random.shuffle(train_keys)
     train_keys = train_keys[:sample_size]
     for key in train_keys:
-        sample_ts = train_data[key]['MonthlyAvgTemperature']
+        # take all keys except Label
+        sample_ts = {k: v for k, v in train_data[key].items() if k != 'Label'}
         sample_label = train_data[key]['Label']
         ts_list.append(sample_ts)
         label_list.append(sample_label)
@@ -44,7 +45,7 @@ def create_prompt(num_shots, train_data=None, test_data=None, messages=[], train
         for i in range(num_shots):
             messages.append({"role": "user", "content": ts_to_string(train_ts_list[i])})
             messages.append({"role": "assistant", "content": label_to_string(train_label_list[i])})
-    
+
     if test_mode:
         test_ts, _ = get_test_ts_label(test_data)
         messages.append({"role": "user", "content": ts_to_string(test_ts)})
@@ -52,16 +53,23 @@ def create_prompt(num_shots, train_data=None, test_data=None, messages=[], train
     return messages
 
 def get_test_ts_label(test_data):
-    return test_data['MonthlyAvgTemperature'], test_data['Label']
+    return {k: v for k, v in test_data.items() if k != 'Label'}, test_data['Label']
 
-def ts_to_string(ts):
-    return "Monthly average temperatures: " + str(ts)
+def ts_to_string(ts_dict: dict) -> str:
+    return '\n'.join(f'{key}: {value}' for key, value in ts_dict.items())
 
 def label_to_string(label):
+    '''
+    TODO: store label strings in json file, have universal data type mode
+    '''
+    # if label == 1:
+    #     return "(A) This city is in North America."
+    # else:
+    #     return "(B) This city is not in North America."
     if label == 1:
-        return "(A) This city is in North America."
+        return "(A) This person's ICU stay was longer than 3 days."
     else:
-        return "(B) This city is not in North America."
+        return "(B) This person's ICU stay was shorter than 3 days."
 
 def parse_response(response_string):
     # return 1 if correct, 0 if incorrect, -1 if invalid response
@@ -70,11 +78,12 @@ def parse_response(response_string):
     else:
         return int('(A)' in response_string)
     
-def get_response(prompt, temperature=0.5):
+def get_response(prompt, temperature=0.5, num_responses=1):
     response = openai.ChatCompletion.create(
         engine=deployment_name,
         messages=prompt,
         temperature=temperature,
+        n=num_responses
     )
-    return response.choices[0]['message']['content']
+    return [response.choices[i]['message']['content'] for i in range(min(num_responses, len(response.choices)))]
 
