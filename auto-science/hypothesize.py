@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import os
 from load_prompts import load_prompts
 
-prompts = load_prompts()
+prompts = load_prompts(filename='prompts/vitals.json')
 
 load_dotenv()
 
@@ -23,14 +23,18 @@ openai.api_type = api_type
 openai.api_version = api_version
 deployment_name = deployment_name
 
-def get_hypothesis(train_data, temperature=0.5, sample_size=16):
+def get_hypothesis(train_data, temperature=1, sample_size=16, num_hypotheses=1):
     system_content = prompts['SYSTEM_CONTENT_1']
     user_content_1 = prompts['USER_CONTENT_1']
     assistant_content_1 = prompts['ASSISTANT_CONTENT_1']
     user_content_2 = prompts['USER_CONTENT_2']
     ask_for_hypothesis = prompts['ASK_FOR_HYPOTHESIS']
-    messages = [{"role": "system", "content": system_content}, {"role": "user", "content": user_content_1}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}, {"role": "user", "content": ask_for_hypothesis}]
+    messages = [{"role": "system", "content": system_content}, {"role": "user", "content": user_content_1}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}]
     prompt = create_prompt(sample_size, train_data=train_data, test_data=None, messages=messages, train_mode=True)
-    response = get_response(prompt, temperature)
+    prompt.append({"role": "user", "content": ask_for_hypothesis})
+    for message in prompt:
+        print(message['content'])
+        print()
+    response = get_response(prompt, temperature, num_hypotheses)
     return response
 

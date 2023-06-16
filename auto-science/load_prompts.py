@@ -1,6 +1,6 @@
 import json
 
-def load_prompts():
-    with open('prompt_strings.json', 'r') as f:
+def load_prompts(filename='prompts/weather.json'):
+    with open(filename, 'r') as f:
         prompts = json.load(f)
     return prompts
