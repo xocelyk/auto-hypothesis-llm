@@ -21,7 +21,7 @@ openai.api_type = api_type
 openai.api_version = api_version
 deployment_name = deployment_name
 
-prompts = load_prompts()
+prompts = load_prompts(filename='prompts/vitals.json')
 
 def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, verbose=True):
     # set up for stat collection
@@ -48,7 +48,7 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
         test_sample = test_validation_data[key]
         test_ts, test_label = get_test_ts_label(test_sample)
         messages = [{"role": "system", "content": system_content}, {"role": "user", "content": user_content_1}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}, {"role": "user", "content": hypothesis_prompt}]
-        prompt = create_prompt(num_shots=1, train_data=test_icl_data, test_data=test_sample, train_mode=True, test_mode=True, messages=messages)
+        prompt = create_prompt(num_shots=4, train_data=test_icl_data, test_data=test_sample, train_mode=True, test_mode=True, messages=messages)
         last_message = prompt.pop()
         prompt.append({'role': 'user', 'content': 'As a reminder, this is the hypothesis: ' + hypothesis})
         prompt.append(last_message)
@@ -76,10 +76,14 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
             total += 1
 
             # descriptive stats
-            tp = (np.array(responses) == np.array(gts)).sum()
-            fp = (np.array(responses) != np.array(gts)).sum()
-            tn = (np.array(responses) == np.array(gts)).sum()
-            fn = (np.array(responses) != np.array(gts)).sum()
+            # true positive
+            tp = np.array([1 if response == 1 and test_label == 1 else 0 for response, test_label in zip(responses, gts)]).sum()
+            # false positive
+            fp = np.array([1 if response == 1 and test_label == 0 else 0 for response, test_label in zip(responses, gts)]).sum()
+            # true negative
+            tn = np.array([1 if response == 0 and test_label == 0 else 0 for response, test_label in zip(responses, gts)]).sum()
+            # false negative
+            fn = np.array([1 if response == 0 and test_label == 1 else 0 for response, test_label in zip(responses, gts)]).sum()
             recall = tp/(tp + fn)
             precision = tp/(tp + fp)
             f1 = 2 * (precision * recall) / (precision + recall)
