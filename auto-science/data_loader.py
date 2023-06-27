@@ -4,22 +4,23 @@ import pandas as pd
 
 def load_data():
     # data_dict = pickle.load(open('../data/weather.pkl', 'rb'))
-    data_dict = pickle.load(open('../data/vitals.pkl', 'rb'))
-
+    # data_dict = pickle.load(open('../data/vitals.pkl', 'rb'))
+    data_dict = pickle.load(open('../data/titanic.pkl', 'rb'))
 
     data_dict_keys = list(data_dict.keys())
     np.random.shuffle(data_dict_keys)
 
     train_keys = data_dict_keys[:int(len(data_dict_keys)*0.3)]
-    test_icl_keys = data_dict_keys[int(len(data_dict_keys)*0.3):]
-    test_validation_keys = data_dict_keys[int(len(data_dict_keys)*0.3):int(len(data_dict_keys)*0.4)]
+    test_icl_keys = data_dict_keys[int(len(data_dict_keys)*0.3):int(len(data_dict_keys)*0.6)]
+    test_validation_keys = data_dict_keys[int(len(data_dict_keys)*0.6):]
     train_data = {data_dict_key: data_dict[data_dict_key] for data_dict_key in train_keys}
     test_icl_data = {data_dict_key: data_dict[data_dict_key] for data_dict_key in test_icl_keys}
     test_validation_data = {data_dict_key: data_dict[data_dict_key] for data_dict_key in test_validation_keys}
+    print('Len Train Data:', len(train_keys), 'Len Test ICL Data:', len(test_icl_keys), 'Len Test Validation Data:', len(test_validation_keys))
     return train_data, test_icl_data, test_validation_data
 
 if __name__ == '__main__':
-    DATA_TYPE = 'vitals'
+    DATA_TYPE = 'titanic'
     if DATA_TYPE == 'weather':
         data_dir = '../data/'
         filename = 'city_temperature.csv'
@@ -56,7 +57,7 @@ if __name__ == '__main__':
         with open('../data/weather.pkl', 'wb') as handle:
             pickle.dump(data_dict, handle)
 
-    if DATA_TYPE == 'vitals':
+    elif DATA_TYPE == 'vitals':
         # TODO: manually specify units?
         data_dict = pickle.load(open('../data/vitals_raw.pkl', 'rb'))
         d_items = pd.read_csv('/Users/kylecox/Documents/ws/mimic-llm/prompting/data/d_items.csv')
@@ -76,3 +77,24 @@ if __name__ == '__main__':
                     new_data_dict[key][label] = val
         with open('../data/vitals.pkl', 'wb') as handle:
             pickle.dump(new_data_dict, handle)
+
+    elif DATA_TYPE == 'titanic':
+        df = pd.read_csv('../data/titanic.csv', index_col=0)
+        label = 'Survived'
+        feature_names = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare']
+        df = df[feature_names + [label]]
+        rename_cols = {label: 'Label', 'Pclass': 'Ticket Class', 'Age': 'Age (years)', 'SibSp': 'Number of Siblings and Spouses Aboard', 'Parch': 'Number of Parents and Children Aboard', 'Fare': 'Fare Price'}
+        df.rename(columns=rename_cols, inplace=True)
+        df.dropna(inplace=True)
+        for col in df.columns:
+            print(df[col].value_counts() / len(df))
+            print()
+        data_dict = {}
+        for idx, row in df.iterrows():
+            data_dict[idx] = {}
+            for col, val in row.items():
+                data_dict[idx][col] = val
+        with open('../data/titanic.pkl', 'wb') as handle:
+            pickle.dump(data_dict, handle)
+
+
