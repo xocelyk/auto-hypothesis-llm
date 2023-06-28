@@ -56,7 +56,9 @@ def get_test_ts_label(test_data):
     return {k: v for k, v in test_data.items() if k != 'Label'}, test_data['Label']
 
 def ts_to_string(ts_dict: dict) -> str:
-    return '\n'.join(f'{key}: {value}' for key, value in ts_dict.items())
+    res = 'Data:\n'
+    res += '\n'.join(f'{key}: {value}' for key, value in ts_dict.items())
+    return res
 
 def label_to_string(label):
     '''
@@ -66,10 +68,15 @@ def label_to_string(label):
     #     return "(A) This city is in North America."
     # else:
     #     return "(B) This city is not in North America."
+    # if label == 1:
+    #     return "(A) This person's ICU stay was longer than 3 days."
+    # else:
+    #     return "(B) This person's ICU stay was shorter than 3 days."
+
     if label == 1:
-        return "(A) This person's ICU stay was longer than 3 days."
+        return "(A) This passenger survived."
     else:
-        return "(B) This person's ICU stay was shorter than 3 days."
+        return "(B) This passenger did not survive."
 
 def parse_response(response_string):
     # return 1 if correct, 0 if incorrect, -1 if invalid response

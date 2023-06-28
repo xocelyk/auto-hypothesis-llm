@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import os
 from load_prompts import load_prompts
 
-prompts = load_prompts(filename='prompts/vitals.json')
+prompts = load_prompts(filename='prompts/titanic.json')
 
 load_dotenv()
 
@@ -32,9 +32,11 @@ def get_hypothesis(train_data, temperature=1, sample_size=16, num_hypotheses=1):
     messages = [{"role": "system", "content": system_content}, {"role": "user", "content": user_content_1}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}]
     prompt = create_prompt(sample_size, train_data=train_data, test_data=None, messages=messages, train_mode=True)
     prompt.append({"role": "user", "content": ask_for_hypothesis})
-    for message in prompt:
-        print(message['content'])
-        print()
+    # write prompt to text file
+    with open('hypothesis_prompt.txt', 'w') as f:
+        for el in prompt:
+            f.write(el['role'] + ': ' + el['content'])
+            f.write('\n\n')
     response = get_response(prompt, temperature, num_hypotheses)
     return response
 

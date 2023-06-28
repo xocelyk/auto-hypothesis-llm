@@ -21,8 +21,8 @@ openai.api_type = api_type
 openai.api_version = api_version
 deployment_name = deployment_name
 
-prompts = load_prompts(filename='prompts/vitals.json')
-NUM_SHOTS = 1
+prompts = load_prompts(filename='prompts/titanic.json')
+NUM_SHOTS = 0
 
 import multiprocessing
 
@@ -39,11 +39,11 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
     total = 0
 
     # prompt set up
-    system_content = prompts['SYSTEM_CONTENT_1']
-    user_content_1 = prompts['USER_CONTENT_1']
+    system_content = prompts['SYSTEM_CONTENT_2']
     assistant_content_1 = prompts['ASSISTANT_CONTENT_1']
     user_content_2 = prompts['USER_CONTENT_2']
-    hypothesis_prompt = 'Hypothesis: ' + hypothesis
+    user_content_3 = prompts['USER_CONTENT_3']
+    hypothesis_prompt = 'Please use the hypothesis to help you with your predictions. Here is the hypothesis: ' + hypothesis
 
     # experiment
     test_keys = list(test_validation_data.keys())
@@ -54,15 +54,18 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
         # TODO: messy and repetitive
         test_sample = test_validation_data[key]
         test_ts, test_label = get_test_ts_label(test_sample)
-        messages = [{"role": "system", "content": system_content}, {"role": "user", "content": user_content_1}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}, {"role": "user", "content": hypothesis_prompt}]
+        messages = [{"role": "system", "content": system_content}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}, {"role": "user", "content": hypothesis_prompt}]
         prompt = create_prompt(num_shots=NUM_SHOTS, train_data=test_icl_data, test_data=test_sample, train_mode=True, test_mode=True, messages=messages)
-        last_message = prompt.pop()
-        prompt.append({'role': 'user', 'content': 'As a reminder, this is the hypothesis: ' + hypothesis})
-        prompt.append(last_message)
+        prompt.append({"role": "user", "content": user_content_3})
         if first and verbose:
             for el in prompt:
                 print(el['content'])
                 print()
+        if first: # write prompt to text file
+            with open('test_prompt.txt', 'w') as f:
+                for el in prompt:
+                    f.write(el['role'] + ': ' + el['content'] + '\n\n')
+
         # Initialize a Pool with one process
         pool = multiprocessing.Pool(processes=1)
 
@@ -88,6 +91,7 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
             if first:
                 first = False
             if response == -1:
+                print(response_text)
                 invalid += 1
             elif response == test_label:
                 correct += 1
