@@ -5,7 +5,7 @@ import openai
 from utils import get_response, create_prompt, get_test_ts_label, parse_response
 from dotenv import load_dotenv
 import os
-from load_prompts import load_prompts
+from config import load_config
 
 load_dotenv()
 
@@ -21,16 +21,16 @@ openai.api_type = api_type
 openai.api_version = api_version
 deployment_name = deployment_name
 
-prompts = load_prompts(filename='prompts/titanic.json')
-NUM_SHOTS = 0
+config = load_config()
+prompts = config['prompts']
+# TODO: this shouldn't be global
 
 import multiprocessing
 
 def get_response_with_timeout(prompt, temperature):
     return get_response(prompt, temperature)
 
-
-def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, verbose=True):
+def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation_data=None, verbose=True):
     # set up for stat collection
     first = True
     correct = 0
@@ -51,11 +51,10 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
     responses = []
     gts = []
     for key in test_keys:
-        # TODO: messy and repetitive
         test_sample = test_validation_data[key]
         test_ts, test_label = get_test_ts_label(test_sample)
         messages = [{"role": "system", "content": system_content}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}, {"role": "user", "content": hypothesis_prompt}]
-        prompt = create_prompt(num_shots=NUM_SHOTS, train_data=test_icl_data, test_data=test_sample, train_mode=True, test_mode=True, messages=messages)
+        prompt = create_prompt(num_shots=num_shots, train_data=test_icl_data, test_data=test_sample, train_mode=True, test_mode=True, messages=messages)
         prompt.append({"role": "user", "content": user_content_3})
         if first and verbose:
             for el in prompt:
@@ -99,14 +98,10 @@ def test_hypothesis(hypothesis, test_icl_data=None, test_validation_data=None, v
                 incorrect += 1
             total += 1
 
-            # descriptive stats
-            # true positive
+        # descriptive stats
         tp = np.array([1 if response == 1 and test_label == 1 else 0 for response, test_label in zip(responses, gts)]).sum()
-        # false positive
         fp = np.array([1 if response == 1 and test_label == 0 else 0 for response, test_label in zip(responses, gts)]).sum()
-        # true negative
         tn = np.array([1 if response == 0 and test_label == 0 else 0 for response, test_label in zip(responses, gts)]).sum()
-        # false negative
         fn = np.array([1 if response == 0 and test_label == 1 else 0 for response, test_label in zip(responses, gts)]).sum()
         recall = tp/(tp + fn)
         precision = tp/(tp + fp)

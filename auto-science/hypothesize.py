@@ -5,9 +5,10 @@ import openai
 from utils import get_response, create_prompt
 from dotenv import load_dotenv
 import os
-from load_prompts import load_prompts
+from config import load_config
 
-prompts = load_prompts(filename='prompts/titanic.json')
+config = load_config()
+prompts = config['prompts']
 
 load_dotenv()
 

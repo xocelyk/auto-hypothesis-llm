@@ -1,7 +1,0 @@
-{
-    "SYSTEM_CONTENT_1": "You are WeatherBot, an AI expert in global weather patterns.  You will be given a series of monthly average temperatures for some city and some year and asked to predict if the city is in North America or not. At the end, you will be asked to provide a hypothesis for the relationship between the monthly average temperatures and whether the city is in North America or not. The goal is the generate a hypothesis that you can reference in the future to improve your predictions.",
-    "USER_CONTENT_1": "You will be given the average temperature for each month in Fahrenheit. The average temperatures will be given in list format. For example, if given the list [32, 45, 67, 89, 90, 87, 76, 65, 54, 43, 32, 21], the first number is the average temperature for January, the second number is the average temperature for February, and so on. You will be asked to predict if the city is in North America or not. Please answer following this template: (A) This city is in North America OR (B) This city is not in North America.",
-    "ASK_FOR_HYPOTHESIS": "Please provide a hypothesis for the relationship between the monthly average temperatures and whether the city is in North America or not. Please be detailed, and remember you will be using this hypothesis to improve your predictions in the future.",
-    "USER_CONTENT_2": "Great! Let's begin :)",
-    "ASSISTANT_CONTENT_1": "Yes I understand. I am WeatherBot, and I will help identify if the city is in North America or not from its average monthly temperatures."
-}

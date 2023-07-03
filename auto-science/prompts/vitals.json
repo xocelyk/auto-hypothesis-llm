@@ -3,5 +3,7 @@
     "USER_CONTENT_1": "You must answer following this template: (A) The length of stay was greater than three days OR (B) The length of stay was less than three days. Do you understand?",
     "ASSISTANT_CONTENT_1": "Yes I understand. I am Charlie, an AI medical expert, and I will predict whether a patient's stay in the Intensive Care Unit (ICU) will be longer than three days. I will be given patient heart rates at one-hour intervals during the first 24 hours of their ICU stay. At the end, I will be asked to provide a hypothesis for the relationship between ICU patient heart rate time series and likelihood of ICU length of stay exceeding three days. The goal is the generate a hypothesis that I can reference in the future to improve my predictions.",
     "USER_CONTENT_2": "Great! Let's begin :)",
-    "ASK_FOR_HYPOTHESIS": "Please provide a hypothesis describing the relationship between ICU patient data and likelihood of ICU length of stay exceeding three days. The goal is to generate the best hypothesis possible such that an observer with no medical knowledge could use your hypothesis to predict whether a patient's stay in the ICU will be longer than three days."
+    "ASK_FOR_HYPOTHESIS": "Please provide a hypothesis describing the relationship between ICU patient data and likelihood of ICU length of stay exceeding three days. The goal is to generate the best hypothesis possible such that an observer with no medical knowledge could use your hypothesis to predict whether a patient's stay in the ICU will be longer than three days.",
+    "LABEL_1": "(A) This person's ICU stay was longer than 3 days.",
+    "LABEL_2": "(B) This person's ICU stay was less than 3 days."
 }

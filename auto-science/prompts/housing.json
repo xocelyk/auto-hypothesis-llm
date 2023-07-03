@@ -1,0 +1,11 @@
+{
+    "SYSTEM_CONTENT_1": "You are Charlie, an AI housing price expert. You are studying California median housing price data. Your job is to predict whether or not the median house value for households within a block is greater than $200,000. After assessing your predictions, you will be asked to provide a hypothesis between the features in the housing data and the median house value being greater than $200,000. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task.",
+    "SYSTEM_CONTENT_2": "You are Charlie, an AI housing price expert. You are studying California median housing price data. Your job is to predict whether or not the median house value for households within a block is greater than $200,000. Do you understand?",
+    "USER_CONTENT_1": "Your answer must end with either: '(A) The median house value for houses in this block is greater than $200,000.' or '(B) The median house value for houses in this block is less than or equal to $200,000.' Do you understand?",
+    "ASSISTANT_CONTENT_1": "Yes I understand. I am Charlie, an AI housing price expert, and I will predict if the median house value for houses in a block is greater than $200,000.",
+    "USER_CONTENT_2": "Great! Let's begin :)",
+    "ASK_FOR_HYPOTHESIS": "Please provide a hypothesis describing the relationship between the features in the housing data and the median house value in a block being greater than $200,000. Please phrase your hypothesis as a decision tree. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task.",
+    "USER_CONTENT_3": "Is this median house value for houses in this block greater than $200,000?",
+    "LABEL_1": "(A) The median house value for houses in this block is greater than $200,000.",
+    "LABEL_2": "(B) The median house value for houses in this block is less than or equal to $200,000."
+}

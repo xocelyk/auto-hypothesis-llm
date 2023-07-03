@@ -2,12 +2,14 @@ import numpy as np
 import pandas as pd
 import numpy as np
 import openai
-from data_loader import load_data
-
+from config import load_config
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
+
+config = load_config()
+prompts = config['prompts']
 
 api_key = os.getenv('API_KEY')
 api_base = os.getenv('API_BASE')
@@ -20,6 +22,7 @@ openai.api_base = api_base
 openai.api_type = api_type
 openai.api_version = api_version
 deployment_name = deployment_name
+
 
 def get_train_ts_label(sample_size, train_data):
     ts_list = []
@@ -34,6 +37,7 @@ def get_train_ts_label(sample_size, train_data):
         ts_list.append(sample_ts)
         label_list.append(sample_label)
     return ts_list, label_list
+
 
 def create_prompt(num_shots, train_data=None, test_data=None, messages=[], train_mode=False, test_mode=False):
     # train and test not mutually exclusive
@@ -52,31 +56,23 @@ def create_prompt(num_shots, train_data=None, test_data=None, messages=[], train
 
     return messages
 
+
 def get_test_ts_label(test_data):
     return {k: v for k, v in test_data.items() if k != 'Label'}, test_data['Label']
+
 
 def ts_to_string(ts_dict: dict) -> str:
     res = 'Data:\n'
     res += '\n'.join(f'{key}: {value}' for key, value in ts_dict.items())
     return res
 
-def label_to_string(label):
-    '''
-    TODO: store label strings in json file, have universal data type mode
-    '''
-    # if label == 1:
-    #     return "(A) This city is in North America."
-    # else:
-    #     return "(B) This city is not in North America."
-    # if label == 1:
-    #     return "(A) This person's ICU stay was longer than 3 days."
-    # else:
-    #     return "(B) This person's ICU stay was shorter than 3 days."
 
+def label_to_string(label):
     if label == 1:
-        return "(A) This passenger survived."
+        return config['prompts']['LABEL_1']
     else:
-        return "(B) This passenger did not survive."
+        return config['prompts']['LABEL_0']
+
 
 def parse_response(response_string):
     # return 1 if correct, 0 if incorrect, -1 if invalid response
@@ -84,7 +80,8 @@ def parse_response(response_string):
         return -1
     else:
         return int('(A)' in response_string)
-    
+
+
 def get_response(prompt, temperature=0.5, num_responses=1):
     response = openai.ChatCompletion.create(
         engine=deployment_name,
@@ -93,4 +90,3 @@ def get_response(prompt, temperature=0.5, num_responses=1):
         n=num_responses
     )
     return [response.choices[i]['message']['content'] for i in range(min(num_responses, len(response.choices)))]
-
