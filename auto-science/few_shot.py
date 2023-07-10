@@ -6,9 +6,8 @@ from utils import get_response, create_prompt, parse_response
 from dotenv import load_dotenv
 import os
 from config import load_config
-from utils import load_data
+from data_loader import split_data
 import multiprocessing
-
 
 config = load_config()
 prompts = config['prompts']
@@ -17,39 +16,31 @@ prompts = config['prompts']
 def get_response_with_timeout(prompt, temperature):
     return get_response(prompt, temperature)
 
-def cot_prompt(train_data, test_data, temperature=1, sample_size=16, num_hypotheses=1):
+def cot_prompt(train_data, test_data, num_shots=16):
     system_content = prompts['SYSTEM_CONTENT_2']
     assistant_content_1 = prompts['ASSISTANT_CONTENT_1']
     user_content_2 = prompts['USER_CONTENT_2']
-    user_content_3 = prompts['USER_CONTENT_3']
+    user_content_3 = prompts['NO_HYPOTHESIS_USER_CONTENT_3']
     messages = [{"role": "system", "content": system_content}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}]
-    prompt = create_prompt(sample_size, train_data=train_data, test_data=test_data, messages=messages, train_mode=True, test_mode=True)
+    prompt = create_prompt(num_shots, train_data=train_data, test_data=test_data, messages=messages, train_mode=True, test_mode=True)
     prompt.append({"role": "user", "content": user_content_3})
+    # user_content_3 = "Is the median house value for houses in this block greater than $200,000? You must answer either '(A) The median house value for houses in this block is greater than $200,000.' OR '(B) The median house value for houses in this block is less than or equal to $200,000.' If you do not follow the answer template someone will die."
+    # prompt.append({"role": "user", "content": user_content_3})
     return prompt
 
-def expreriment(sample_size=2, test_size=200):
-    train_data, test_icl_data, test_validation_data = load_data()
-
-    test_validation_keys = list(test_validation_data.keys())
-    np.random.shuffle(test_validation_keys)
-    test_validation_keys = test_validation_keys[:test_size]
-    test_validation_data = {key: test_validation_data[key] for key in test_validation_keys}
-
+def few_shot(train_data, test_validation_data, num_shots=2, verbose=True):
     responses = []
     gts = []
     first = True
-    correct = incorrect = invalid = total = 0
+    correct = incorrect = invalid = api_timeout = total = 0
     for key in test_validation_data.keys():
+        # randomize ICL examples
         train_data_keys = list(train_data.keys())
         np.random.shuffle(train_data_keys)
-        train_data_keys = train_data_keys[:sample_size]
-        train_data = {key: train_data[key] for key in train_data_keys}
+        train_data_keys = train_data_keys[:num_shots]
+        icl_data = {key: train_data[key] for key in train_data_keys}
         test_label = test_validation_data[key]['Label']
-        prompt = cot_prompt(train_data, test_validation_data[key], temperature=0.7, sample_size=sample_size)
-        if first:
-            for el in prompt:
-                print(el['content'])
-            first = False
+        prompt = cot_prompt(icl_data, test_validation_data[key], num_shots=num_shots)
         # Initialize a Pool with one process
         pool = multiprocessing.Pool(processes=1)
 
@@ -60,7 +51,8 @@ def expreriment(sample_size=2, test_size=200):
             # get the result within 5 seconds
             response_text = result.get(timeout=5)[0]
         except multiprocessing.TimeoutError:
-            print("get_response() function took longer than 5 seconds.")
+            print("get_response() function took longer than 5 seconds.", end="\r")
+            api_timeout += 1
             pool.terminate()  # kill the process
             continue  # go to the next loop iteration
 
@@ -70,7 +62,6 @@ def expreriment(sample_size=2, test_size=200):
         responses.append(response)
         gts.append(test_label)
         if response == -1:
-            print(response_text)
             invalid += 1
         elif response == test_label:
             correct += 1
@@ -89,16 +80,25 @@ def expreriment(sample_size=2, test_size=200):
         verbose = True
         if verbose:
             try: # handle divide by zero
-                print('Accuracy:', round(correct/(incorrect + correct), 3), 'Correct:', correct, 'Incorrect:', incorrect, 
-                      'Invalid:', invalid, 'Total', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', round(f1, 3), 
-                      'Recall:', round(recall, 3), 'Precision:', round(precision, 3))
+                print('Accuracy:', round(correct/(incorrect + correct), 3), 'Correct:', correct, 'Incorrect:', incorrect,
+                      'Invalid:', invalid, 'API Timeout:', api_timeout, 'Total:', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', round(f1, 3), 
+                      'Recall:', round(recall, 3), 'Precision:', round(precision, 3), end='\r')
             except ZeroDivisionError:
                 print('Accuracy:', 0, 'Correct:', correct, 'Incorrect:', incorrect, 
-                      'Invalid:', invalid, 'Total', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', 0, 
-                      'Recall:', 0, 'Precision:', 0)
-    return {'correct': correct, 'incorrect': incorrect, 'invalid': invalid, 'total': total, 
+                      'Invalid:', invalid, 'API Timeout:', api_timeout, 'Total:', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', 0, 
+                      'Recall:', 0, 'Precision:', 0, end='\r')
+    return {'correct': correct, 'incorrect': incorrect, 'invalid': invalid, 'api_timeout': api_timeout, 'total': total, 
             'f1': f1, 'recall': recall, 'precision': precision, 'accuracy': round(correct/(incorrect + correct), 3)}
 
 if __name__ == '__main__':
-    results = expreriment(sample_size=4, test_size=200)
+    config = load_config()
+    prompts = config['prompts']
+    data_dict = config['data_dict']
+    train_data, test_icl_data, test_validation_data = split_data(data_dict, 100, 100, 200)
+    test_size = 200
+    test_validation_data_keys = list(test_validation_data.keys())
+    np.random.shuffle(test_validation_data_keys)
+    test_validation_data_keys = test_validation_data_keys[:test_size]
+    test_validation_data = {key: test_validation_data[key] for key in test_validation_data_keys}
+    results = few_shot(train_data, test_validation_data, num_shots=1, verbose=True)
     print(results)

@@ -9,6 +9,7 @@ from config import load_config
 
 config = load_config()
 prompts = config['prompts']
+data_mode = config['data_mode']
 
 load_dotenv()
 
@@ -24,6 +25,12 @@ openai.api_type = api_type
 openai.api_version = api_version
 deployment_name = deployment_name
 
+def parse_hypothesis(hypothesis):
+    # hypothesis response is often in the form of "hypothesis: <hypothesis>"
+    if 'Decision Tree:' in hypothesis:
+        hypothesis = hypothesis.split('Decision Tree:')[1].strip()
+    return hypothesis
+
 def get_hypothesis(train_data, temperature=1, sample_size=16, num_hypotheses=1):
     system_content = prompts['SYSTEM_CONTENT_1']
     user_content_1 = prompts['USER_CONTENT_1']
@@ -34,10 +41,11 @@ def get_hypothesis(train_data, temperature=1, sample_size=16, num_hypotheses=1):
     prompt = create_prompt(sample_size, train_data=train_data, test_data=None, messages=messages, train_mode=True)
     prompt.append({"role": "user", "content": ask_for_hypothesis})
     # write prompt to text file
-    with open('hypothesis_prompt.txt', 'w') as f:
+    with open(f'data/generated_prompts/hypothesis_prompt_{data_mode}.txt', 'w') as f:
         for el in prompt:
             f.write(el['role'] + ': ' + el['content'])
             f.write('\n\n')
     response = get_response(prompt, temperature, num_hypotheses)
+    response = [parse_hypothesis(hypothesis) for hypothesis in response]
     return response
 

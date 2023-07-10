@@ -1,0 +1,31 @@
+system: You are Charlie, an AI housing price expert. You are studying California median housing price data. Your job is to predict whether or not the median house value for households within a block is greater than $200,000. Do you understand?
+
+assistant: Yes I understand. I am Charlie, an AI housing price expert, and I will predict if the median house value for houses in a block is greater than $200,000.
+
+user: Great! Let's begin :)
+
+user: Please use the hypothesis to help you with your predictions. Here is the hypothesis: Certainly! Based on the data we have analyzed, the following decision tree can be used to predict whether or not the median house value for households within a block is greater than $200,000:
+
+1. If the median income is greater than $48,000, then the median house value is greater than $200,000.
+2. If the median income is less than or equal to $48,000, then we need to look at the housing median age.
+3. If the housing median age is less than or equal to 16.5 years, then the median house value is greater than $200,000.
+4. If the housing median age is greater than 16.5 years, then we need to look at the latitude.
+5. If the latitude is less than or equal to 35.1, then the median house value is greater than $200,000.
+6. If the latitude is greater than 35.1, then the median house value is less than or equal to $200,000.
+
+This decision tree suggests that median income is the most important predictor of whether or not the median house value is greater than $200,000. If the median income is greater than $48,000, then the median house value is likely to be greater than $200,000. However, if the median income is less than or equal to $48,000, then the housing median age and latitude become important predictors. If the housing median age is less than or equal to 16.5 years, then the median house value is likely to be greater than $200,000. If the housing median age is greater than 16.5 years, then the latitude becomes an important predictor. If the latitude is less than or equal to 35.1, then the median house value is likely to be greater than $200,000, but if it is greater than 35.1, then the median house value is likely to be less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.26
+Latitude: 37.88
+Housing Median Age: 52.0
+Total Rooms: 1149.0
+Total Bedrooms: 255.0
+Population: 483.0
+Number Households: 249.0
+Median Income ($): 42788.0
+
+user: Is the median house value for houses in this block greater than $200,000? Your answer must end with either: '(A) The median house value for houses in this block is greater than $200,000.' OR '(B) The median house value for houses in this block is less than or equal to $200,000.'.
+
+user: Please use the hypothesis to make your prediction, explain your reasoning, and follow the answer template.
+

@@ -1,0 +1,59 @@
+system: You are Charlie, an AI housing price expert. You are studying California median housing price data. Your job is to predict whether or not the median house value for households within a block is greater than $200,000. After assessing your predictions, you will be asked to provide a hypothesis between the features in the housing data and the median house value being greater than $200,000. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task.
+
+user: Your answer must end with either: '(A) The median house value for houses in this block is greater than $200,000.' or '(B) The median house value for houses in this block is less than or equal to $200,000.' Do you understand?
+
+assistant: Yes I understand. I am Charlie, an AI housing price expert, and I will predict if the median house value for houses in a block is greater than $200,000.
+
+user: Great! Let's begin :)
+
+user: Data:
+Longitude: -117.65
+Latitude: 34.04
+Housing Median Age: 15
+Total Rooms: 3393
+Total Bedrooms: nan
+Population: 2039
+Number Households: 611
+Median Income ($): 39336
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.66
+Latitude: 34.07
+Housing Median Age: 36
+Total Rooms: 2072
+Total Bedrooms: 408.0
+Population: 964
+Number Households: 395
+Median Income ($): 28702
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.48
+Latitude: 34.0
+Housing Median Age: 29
+Total Rooms: 1727
+Total Bedrooms: 479.0
+Population: 741
+Number Households: 431
+Median Income ($): 36121
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -120.52
+Latitude: 35.06
+Housing Median Age: 11
+Total Rooms: 1317
+Total Bedrooms: 234.0
+Population: 655
+Number Households: 243
+Median Income ($): 43611
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Please provide a hypothesis describing the relationship between the features in the housing data and the median house value in a block being greater than $200,000. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task. Please phrase your hypothesis as a decision tree, and phrase your hypothesis as 'Decision Tree:
+<Decision Tree>'.
+

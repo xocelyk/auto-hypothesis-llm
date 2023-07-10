@@ -23,6 +23,7 @@ deployment_name = deployment_name
 
 config = load_config()
 prompts = config['prompts']
+data_mode = config['data_mode']
 # TODO: this shouldn't be global
 
 import multiprocessing
@@ -33,10 +34,7 @@ def get_response_with_timeout(prompt, temperature):
 def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation_data=None, verbose=True):
     # set up for stat collection
     first = True
-    correct = 0
-    incorrect = 0
-    invalid = 0
-    total = 0
+    correct = incorrect = invalid = api_timeout = total = 0
 
     # prompt set up
     system_content = prompts['SYSTEM_CONTENT_2']
@@ -47,7 +45,6 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
 
     # experiment
     test_keys = list(test_validation_data.keys())
-    np.random.shuffle(test_keys)
     responses = []
     gts = []
     for key in test_keys:
@@ -56,14 +53,13 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
         messages = [{"role": "system", "content": system_content}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}, {"role": "user", "content": hypothesis_prompt}]
         prompt = create_prompt(num_shots=num_shots, train_data=test_icl_data, test_data=test_sample, train_mode=True, test_mode=True, messages=messages)
         prompt.append({"role": "user", "content": user_content_3})
-        if first and verbose:
-            for el in prompt:
-                print(el['content'])
-                print()
-        if first: # write prompt to text file
-            with open('test_prompt.txt', 'w') as f:
-                for el in prompt:
-                    f.write(el['role'] + ': ' + el['content'] + '\n\n')
+        remind_hypothesis_text = 'Please use the hypothesis to make your prediction, explain your reasoning, and follow the answer template.'
+        prompt.append({"role": "user", "content": remind_hypothesis_text})
+
+        # if first: # write prompt to text file
+        #     with open(f'data/generated_prompts/test_prompt_{data_mode}.txt', 'w') as f:
+        #         for el in prompt:
+        #             f.write(el['role'] + ': ' + el['content'] + '\n\n')
 
         # Initialize a Pool with one process
         pool = multiprocessing.Pool(processes=1)
@@ -75,28 +71,22 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
             # get the result within 5 seconds
             response_text = result.get(timeout=5)[0]
         except multiprocessing.TimeoutError:
-            print("get_response() function took longer than 5 seconds.")
+            print("get_response() function took longer than 5 seconds.", end="\r")
+            api_timeout += 1
             pool.terminate()  # kill the process
             continue  # go to the next loop iteration
-
         pool.close()  # we are not going to use this pool anymore
         pool.join()  # wait for the pool to close by joining
-        if first and verbose:
-            print(response_text)
         response = parse_response(response_text)
         responses.append(response)
         gts.append(test_label)
-        if verbose:
-            if first:
-                first = False
-            if response == -1:
-                print(response_text)
-                invalid += 1
-            elif response == test_label:
-                correct += 1
-            else:
-                incorrect += 1
-            total += 1
+        if response == -1:
+            invalid += 1
+        elif response == test_label:
+            correct += 1
+        else:
+            incorrect += 1
+        total += 1
 
         # descriptive stats
         tp = np.array([1 if response == 1 and test_label == 1 else 0 for response, test_label in zip(responses, gts)]).sum()
@@ -109,8 +99,22 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
 
         if verbose:
             try: # handle divide by zero
-                print('Accuracy:', round(correct/(incorrect + correct), 3), 'Correct:', correct, 'Incorrect:', incorrect, 'Invalid:', invalid, 'Total', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', round(f1, 3), 'Recall:', round(recall, 3), 'Precision:', round(precision, 3))
+                print('Details: ' + str({
+                    'Accuracy': round(correct/(incorrect + correct), 3), 
+                    'Correct': correct, 
+                    'Incorrect': incorrect, 
+                    'Invalid': invalid, 
+                    'API Timeout': api_timeout, 
+                    'Total': total, 
+                    'TP': tp, 
+                    'FP': fp, 
+                    'TN': tn, 
+                    'FN': fn, 
+                    'F1': round(f1, 3), 
+                    'Recall': round(recall, 3), 
+                    'Precision': round(precision, 3)
+                }), end="\r")
             except:
-                print('Accuracy:', 0, 'Correct:', correct, 'Incorrect:', incorrect, 'Invalid:', invalid, 'Total', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', 0, 'Recall:', 0, 'Precision:', 0)
-    return {'responses': responses, 'gts': gts, 'correct': correct, 'incorrect': incorrect, 'invalid': invalid, 'total': total, 'f1': f1, 'recall': recall, 'precision': precision, 'accuracy': round(correct/(incorrect + correct), 3)}
+                print('Accuracy:', 0, 'Correct:', correct, 'Incorrect:', incorrect, 'Invalid:', invalid, 'API Timeout:', api_timeout, 'Total:', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', 0, 'Recall:', 0, 'Precision:', 0, end="\r")
+    return {'hypothesis': hypothesis, 'responses': responses, 'gts': gts, 'correct': correct, 'incorrect': incorrect, 'invalid': invalid, 'api_timeout': api_timeout, 'total': total, 'f1': f1, 'recall': recall, 'precision': precision, 'accuracy': round(correct/(incorrect + correct), 3)}
 

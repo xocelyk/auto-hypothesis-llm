@@ -1,0 +1,2 @@
+Hypothesis 1: Hypothesis: If the median income in a block is greater than $50,000, and the housing median age is less than or equal to 30, then the median house value for houses in that block is greater than $200,000. If the median income in a block is less than or equal to $50,000, and the total bedrooms in a block is less than or equal to 500, then the median house value for houses in that block is less than or equal to $200,000. In all other cases, further analysis is needed to determine the median house value.
+

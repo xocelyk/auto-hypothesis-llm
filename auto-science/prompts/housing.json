@@ -4,8 +4,9 @@
     "USER_CONTENT_1": "Your answer must end with either: '(A) The median house value for houses in this block is greater than $200,000.' or '(B) The median house value for houses in this block is less than or equal to $200,000.' Do you understand?",
     "ASSISTANT_CONTENT_1": "Yes I understand. I am Charlie, an AI housing price expert, and I will predict if the median house value for houses in a block is greater than $200,000.",
     "USER_CONTENT_2": "Great! Let's begin :)",
-    "ASK_FOR_HYPOTHESIS": "Please provide a hypothesis describing the relationship between the features in the housing data and the median house value in a block being greater than $200,000. Please phrase your hypothesis as a decision tree. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task.",
-    "USER_CONTENT_3": "Is this median house value for houses in this block greater than $200,000?",
+    "ASK_FOR_HYPOTHESIS": "Please provide a hypothesis describing the relationship between the features in the housing data and the median house value in a block being greater than $200,000. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task. Please phrase your hypothesis as a decision tree, and phrase your hypothesis as 'Decision Tree:\n<Decision Tree>'.",
+    "USER_CONTENT_3": "Is the median house value for houses in this block greater than $200,000? Your answer must end with either: '(A) The median house value for houses in this block is greater than $200,000.' OR '(B) The median house value for houses in this block is less than or equal to $200,000.'",
+    "NO_HYPOTHESIS_USER_CONTENT_3": "Is the median house value for houses in this block greater than $200,000? You must answer either: '(A) The median house value for houses in this block is greater than $200,000.' OR '(B) The median house value for houses in this block is less than or equal to $200,000.' If you do not follow the answer template, something bad will happen.",
     "LABEL_1": "(A) The median house value for houses in this block is greater than $200,000.",
-    "LABEL_2": "(B) The median house value for houses in this block is less than or equal to $200,000."
+    "LABEL_0": "(B) The median house value for houses in this block is less than or equal to $200,000."
 }
