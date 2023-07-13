@@ -61,15 +61,13 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
         #         for el in prompt:
         #             f.write(el['role'] + ': ' + el['content'] + '\n\n')
 
-        # Initialize a Pool with one process
-        pool = multiprocessing.Pool(processes=1)
-
-
-        # Call get_response_with_timeout() in that process, and set timeout as 5 seconds
-        result = pool.apply_async(get_response_with_timeout, args=(prompt, 0.0))
 
         try:
             # get the result within 5 seconds
+            # Initialize a Pool with one process
+            pool = multiprocessing.Pool(processes=1)
+            # Call get_response_with_timeout() in that process, and set timeout as 5 seconds
+            result = pool.apply_async(get_response_with_timeout, args=(prompt, 0.0))
             response_text = result.get(timeout=5)[0]
         except multiprocessing.TimeoutError:
             print("get_response() function took longer than 5 seconds.")

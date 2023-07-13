@@ -7,52 +7,52 @@ assistant: Yes I understand. I am Charlie, an AI housing price expert, and I wil
 user: Great! Let's begin :)
 
 user: Data:
-Longitude: -118.37
-Latitude: 33.93
-Housing Median Age: 10
-Total Rooms: 199
-Total Bedrooms: 41.0
-Population: 61
-Number Households: 56
-Median Income ($): 28958
-
-assistant: (A) The median house value for houses in this block is greater than $200,000.
-
-user: Data:
-Longitude: -120.82
-Latitude: 37.5
-Housing Median Age: 21
-Total Rooms: 2974
-Total Bedrooms: 495.0
-Population: 1313
-Number Households: 461
-Median Income ($): 44886
+Longitude: -117.85
+Latitude: 34.11
+Housing Median Age: 27
+Total Rooms: 1748
+Total Bedrooms: 403.0
+Population: 985
+Number Households: 416
+Median Income ($): 31133
 
 assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
 
 user: Data:
-Longitude: -122.68
-Latitude: 38.01
-Housing Median Age: 41
-Total Rooms: 1865
-Total Bedrooms: 392.0
-Population: 825
-Number Households: 369
-Median Income ($): 42011
+Longitude: -122.11
+Latitude: 37.69
+Housing Median Age: 37
+Total Rooms: 2444
+Total Bedrooms: 651.0
+Population: 1562
+Number Households: 618
+Median Income ($): 26464
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.33
+Latitude: 34.12
+Housing Median Age: 23
+Total Rooms: 1894
+Total Bedrooms: 416.0
+Population: 769
+Number Households: 392
+Median Income ($): 60352
 
 assistant: (A) The median house value for houses in this block is greater than $200,000.
 
 user: Data:
-Longitude: -121.58
-Latitude: 39.76
-Housing Median Age: 19
-Total Rooms: 2487
-Total Bedrooms: 485.0
-Population: 1110
-Number Households: 453
-Median Income ($): 31061
+Longitude: -122.01
+Latitude: 37.93
+Housing Median Age: 25
+Total Rooms: 2652
+Total Bedrooms: 335.0
+Population: 1062
+Number Households: 334
+Median Income ($): 75898
 
-assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+assistant: (A) The median house value for houses in this block is greater than $200,000.
 
 user: Please provide a hypothesis describing the relationship between the features in the housing data and the median house value in a block being greater than $200,000. The goal is to generate a hypothesis that will be useful to a future agent performing the same prediction task. Please phrase your hypothesis as a decision tree, and phrase your hypothesis as 'Decision Tree:
 <Decision Tree>'.
