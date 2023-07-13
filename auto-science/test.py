@@ -64,6 +64,7 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
         # Initialize a Pool with one process
         pool = multiprocessing.Pool(processes=1)
 
+
         # Call get_response_with_timeout() in that process, and set timeout as 5 seconds
         result = pool.apply_async(get_response_with_timeout, args=(prompt, 0.0))
 
@@ -71,16 +72,29 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
             # get the result within 5 seconds
             response_text = result.get(timeout=5)[0]
         except multiprocessing.TimeoutError:
-            print("get_response() function took longer than 5 seconds.", end="\r")
+            print("get_response() function took longer than 5 seconds.")
             api_timeout += 1
             pool.terminate()  # kill the process
             continue  # go to the next loop iteration
-        pool.close()  # we are not going to use this pool anymore
-        pool.join()  # wait for the pool to close by joining
+        except openai.error.APIConnectionError:
+            print('API Connection Error')
+            api_timeout += 1
+            pool.terminate()  # kill the process
+        except OSError as e:
+            if e.errno == 24:
+                print('Too many open files')
+                api_timeout += 1
+                pool.close()  
+                pool.join() # kill the process
+                continue  # go to the next loop iteration
+            else:
+                raise e # wait for the pool to close by joining
         response = parse_response(response_text)
         responses.append(response)
         gts.append(test_label)
         if response == -1:
+            print(response_text)
+            print()
             invalid += 1
         elif response == test_label:
             correct += 1
@@ -113,8 +127,10 @@ def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation
                     'F1': round(f1, 3), 
                     'Recall': round(recall, 3), 
                     'Precision': round(precision, 3)
-                }), end="\r")
+                }))
             except:
-                print('Accuracy:', 0, 'Correct:', correct, 'Incorrect:', incorrect, 'Invalid:', invalid, 'API Timeout:', api_timeout, 'Total:', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', 0, 'Recall:', 0, 'Precision:', 0, end="\r")
+                print('Accuracy:', 0, 'Correct:', correct, 'Incorrect:', incorrect, 'Invalid:', invalid, 'API Timeout:', api_timeout, 'Total:', total, 'TP:', tp, 'FP:', fp, 'TN:', tn, 'FN:', fn, 'F1:', 0, 'Recall:', 0, 'Precision:', 0)
+    pool.close()
+    pool.join()  # wait for the pool to close by joining
     return {'hypothesis': hypothesis, 'responses': responses, 'gts': gts, 'correct': correct, 'incorrect': incorrect, 'invalid': invalid, 'api_timeout': api_timeout, 'total': total, 'f1': f1, 'recall': recall, 'precision': precision, 'accuracy': round(correct/(incorrect + correct), 3)}
 

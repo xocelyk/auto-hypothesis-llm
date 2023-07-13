@@ -55,6 +55,11 @@ def few_shot(train_data, test_validation_data, num_shots=2, verbose=True):
             api_timeout += 1
             pool.terminate()  # kill the process
             continue  # go to the next loop iteration
+        except openai.error.APIConnectionError:
+            print('API Connection Error', end='\r')
+            api_timeout += 1
+            pool.terminate()  # kill the process
+            continue
 
         pool.close()  # we are not going to use this pool anymore
         pool.join()  # wait for the pool to close by joining
