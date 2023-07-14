@@ -7,50 +7,14 @@ assistant: Yes I understand. I am Charlie, an AI housing price expert, and I wil
 user: Great! Let's begin :)
 
 user: Data:
-Longitude: -117.85
-Latitude: 34.11
+Longitude: -118.03
+Latitude: 33.77
 Housing Median Age: 27
-Total Rooms: 1748
-Total Bedrooms: 403.0
-Population: 985
-Number Households: 416
-Median Income ($): 31133
-
-assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
-
-user: Data:
-Longitude: -122.11
-Latitude: 37.69
-Housing Median Age: 37
-Total Rooms: 2444
-Total Bedrooms: 651.0
-Population: 1562
-Number Households: 618
-Median Income ($): 26464
-
-assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
-
-user: Data:
-Longitude: -118.33
-Latitude: 34.12
-Housing Median Age: 23
-Total Rooms: 1894
-Total Bedrooms: 416.0
-Population: 769
-Number Households: 392
-Median Income ($): 60352
-
-assistant: (A) The median house value for houses in this block is greater than $200,000.
-
-user: Data:
-Longitude: -122.01
-Latitude: 37.93
-Housing Median Age: 25
-Total Rooms: 2652
-Total Bedrooms: 335.0
-Population: 1062
-Number Households: 334
-Median Income ($): 75898
+Total Rooms: 2000
+Total Bedrooms: 310.0
+Population: 880
+Number Households: 294
+Median Income ($): 56350
 
 assistant: (A) The median house value for houses in this block is greater than $200,000.
 

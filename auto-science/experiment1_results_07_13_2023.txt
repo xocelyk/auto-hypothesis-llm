@@ -1,0 +1,35 @@
+'few-shot, no-hypothesis, 1':
+{'correct': 298,
+  'incorrect': 173,
+  'invalid': 1,
+  'api_timeout': 28,
+  'total': 472,
+  'f1': 0.5411140583554376,
+  'recall': 0.4766355140186916,
+  'precision': 0.6257668711656442,
+  'accuracy': 0.633},
+
+
+ 'few-shot, no-hypothesis, 4': 
+{'correct': 308,
+  'incorrect': 166,
+  'invalid': 3,
+  'api_timeout': 23,
+  'total': 477,
+  'f1': 0.6175115207373272,
+  'recall': 0.6232558139534884,
+  'precision': 0.6118721461187214,
+  'accuracy': 0.65},
+
+'hypothesis, 4, 0, hypothesis_0': 
+{'hypothesis': '- If the median income for households in a block is greater than $46,000,\n    - And the housing median age is less than or equal to 33,\n        - And the total number of rooms in the block is greater than 1850,\n            - Then the median house value for houses in this block is greater than $200,000.\n    - And the housing median age is greater than 33,\n        - Then the median house value for houses in this block is less than or equal to $200,000.\n- If the median income for households in a block is less than or equal to $46,000,\n    - Then the median house value for houses in this block is less than or equal to $200,000.\n\nThis decision tree hypothesis suggests that the median income would be the most important factor in predicting the median house value. If the median income is low, the median house value is also low. However, if the median income is high, other factors such as housing median age and total number of rooms become important in predicting the median house value.',
+  'correct': 304,
+  'incorrect': 118,
+  'invalid': 0,
+  'api_timeout': 78,
+  'total': 422,
+  'f1': 0.5785714285714286,
+  'recall': 0.4426229508196721,
+  'precision': 0.8350515463917526,
+  'accuracy': 0.72},
+

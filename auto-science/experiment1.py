@@ -5,6 +5,7 @@ from few_shot import few_shot
 from hypothesize import get_hypothesis
 from test import test_hypothesis
 import pickle
+import datetime
 
 
 filename = 'experiment1_results.pkl'
@@ -53,15 +54,25 @@ def main():
     hypothesis_num_shots_lst = [4, 16, 64]
     for i in range(num_hypotheses):
         for hypothesis_num_shots in hypothesis_num_shots_lst:
-            hypotheses = get_hypothesis(train_data, gen_hypothesis_temperature, hypothesis_num_shots, 1)
+            if hypothesis_num_shots == 4:
+                hypothesis_for_test_4_shot = '- If the median income for households in a block is greater than $46,000,\n    - And the housing median age is less than or equal to 33,\n        - And the total number of rooms in the block is greater than 1850,\n            - Then the median house value for houses in this block is greater than $200,000.\n    - And the housing median age is greater than 33,\n        - Then the median house value for houses in this block is less than or equal to $200,000.\n- If the median income for households in a block is less than or equal to $46,000,\n    - Then the median house value for houses in this block is less than or equal to $200,000.\n\nThis decision tree hypothesis suggests that the median income would be the most important factor in predicting the median house value. If the median income is low, the median house value is also low. However, if the median income is high, other factors such as housing median age and total number of rooms become important in predicting the median house value.'
+                hypotheses = [hypothesis_for_test_4_shot]
+            else:
+                hypotheses = get_hypothesis(train_data, gen_hypothesis_temperature, hypothesis_num_shots, 1)
             for hypothesis in hypotheses:
                 for num_icl_shots in num_icl_shots_for_hypothesis_testing:
+                    if num_icl_shots == 0 and hypothesis_num_shots == 4:
+                        continue
                     print('\n')
                     print('Few shot, hypothesis, num shots hypothesis generation:', hypothesis_num_shots, 'num ICL shots:', num_icl_shots)
                     print()
                     print('Hypothesis:', hypothesis)
                     print()
                     results = test_hypothesis(hypothesis, num_shots=num_icl_shots, test_icl_data=test_icl_data, test_validation_data=test_validation_data, verbose=True)
+                    try:
+                        results['timestamp'] = str(datetime.datetime.now())
+                    except:
+                        print('Error with timestamp')
                     print('Accuracy:', results['accuracy'])
                     experiment_results[f'hypothesis, {hypothesis_num_shots}, {num_icl_shots}, hypothesis_{i}'] = results
                     with open('experiment1_results.pkl', 'wb') as f:
