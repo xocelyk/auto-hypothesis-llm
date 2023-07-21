@@ -1,0 +1,40 @@
+- If the median income is greater than $70,000, then the median house value for houses in this block is greater than $200,000.
+- If the median income is less than or equal to $70,000, then:
+    - If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+    - If the housing median age is greater than 20, then the median house value for houses in this block is less than or equal to $200,000.
+
+This decision tree suggests that median income is the most important predictor of median house value. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then the housing median age becomes an important factor. If the housing median age is low, then the median house value is likely to be high. If the housing median age is high, then the median house value is likely to be low.
+
+
+- If the median income is greater than $70,000, then the median house value for houses in this block is greater than $200,000.
+- If the median income is less than or equal to $70,000, then:
+    - If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+    - If the housing median age is greater than 20, then the median house value for houses in this block is less than or equal to $200,000.
+
+This decision tree suggests that median income is the most important predictor of median house value. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then the housing median age becomes an important factor. If the housing median age is low, then the median house value is likely to be high. If the housing median age is high, then the median house value is likely to be low.
+
+
+- If the median income is greater than $70,000, then the median house value for houses in this block is greater than $200,000.
+- If the median income is less than or equal to $70,000, then:
+    - If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+    - If the housing median age is greater than 20, then the median house value for houses in this block is less than or equal to $200,000.
+
+This decision tree suggests that median income is the most important predictor of median house value. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then the housing median age becomes an important factor. If the housing median age is low, then the median house value is likely to be high. If the housing median age is high, then the median house value is likely to be low.
+
+
+- If the median income is greater than $70,000, then the median house value for houses in this block is greater than $200,000.
+- If the median income is less than or equal to $70,000, then:
+    - If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+    - If the housing median age is greater than 20, then the median house value for houses in this block is less than or equal to $200,000.
+
+This decision tree suggests that median income is the most important predictor of median house value. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then the housing median age becomes an important factor. If the housing median age is low, then the median house value is likely to be high. If the housing median age is high, then the median house value is likely to be low.
+
+
+- If the median income is greater than $70,000, then the median house value for houses in this block is greater than $200,000.
+- If the median income is less than or equal to $70,000, then:
+    - If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+    - If the housing median age is greater than 20, then the median house value for houses in this block is less than or equal to $200,000.
+
+This decision tree suggests that median income is the most important predictor of median house value. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then the housing median age becomes an important factor. If the housing median age is low, then the median house value is likely to be high. If the housing median age is high, then the median house value is likely to be low.
+
+

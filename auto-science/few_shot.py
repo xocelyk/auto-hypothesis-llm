@@ -11,6 +11,8 @@ import multiprocessing
 
 config = load_config()
 prompts = config['prompts']
+# probably should put this in the config file
+TIMEOUT = 10
 
 
 def get_response_with_timeout(prompt, temperature):
@@ -23,7 +25,9 @@ def cot_prompt(train_data, test_data, num_shots=16):
     user_content_3 = prompts['NO_HYPOTHESIS_USER_CONTENT_3']
     messages = [{"role": "system", "content": system_content}, {"role": "assistant", "content": assistant_content_1}, {"role": "user", "content": user_content_2}]
     prompt = create_prompt(num_shots, train_data=train_data, test_data=test_data, messages=messages, train_mode=True, test_mode=True)
-    prompt.append({"role": "user", "content": user_content_3})
+    # CHANGED: only reinforce template if we are doing zero shot
+    if num_shots == 0:
+        prompt.append({"role": "user", "content": user_content_3})
     # user_content_3 = "Is the median house value for houses in this block greater than $200,000? You must answer either '(A) The median house value for houses in this block is greater than $200,000.' OR '(B) The median house value for houses in this block is less than or equal to $200,000.' If you do not follow the answer template someone will die."
     # prompt.append({"role": "user", "content": user_content_3})
     return prompt
@@ -95,15 +99,41 @@ def few_shot(train_data, test_validation_data, num_shots=2, verbose=True):
     return {'correct': correct, 'incorrect': incorrect, 'invalid': invalid, 'api_timeout': api_timeout, 'total': total, 
             'f1': f1, 'recall': recall, 'precision': precision, 'accuracy': round(correct/(incorrect + correct), 3)}
 
+def few_shot_one_example(test_icl_data, test_validation_data, num_shots):
+    assert 'Label' in test_validation_data.keys(), 'Few Shot One Example takes one example at a time'
+    test_icl_data_keys = list(test_icl_data.keys())
+    np.random.shuffle(test_icl_data_keys)
+    test_icl_data_keys = test_icl_data_keys[:num_shots]
+    test_icl_data = {key: test_icl_data[key] for key in test_icl_data_keys}
+    test_label = test_validation_data['Label']
+    prompt = cot_prompt(test_icl_data, test_validation_data, num_shots=num_shots)
+    response_text = get_response(prompt, temperature=0, timeout=TIMEOUT)[0]
+    response = parse_response(response_text)
+    if response == test_label:
+        correct = 1
+    else:
+        if response == -1:
+            correct = -1
+        else:
+            correct = 0
+    return {'response': response, 'correct': correct, 'label': test_label, 'text': response_text}
+
 if __name__ == '__main__':
     config = load_config()
     prompts = config['prompts']
     data_dict = config['data_dict']
     train_data, test_icl_data, test_validation_data = split_data(data_dict, 100, 100, 200)
+    test_icl_data_filename = 'data/experiment2/test_icl_data.pkl'
+    test_validation_data_filename = 'data/experiment2/test_validation_data.pkl'
+
+    import pickle
+    test_icl_data = pickle.load(open(test_icl_data_filename, 'rb'))
+    test_validation_data = pickle.load(open(test_validation_data_filename, 'rb'))
+
     test_size = 200
     test_validation_data_keys = list(test_validation_data.keys())
     np.random.shuffle(test_validation_data_keys)
     test_validation_data_keys = test_validation_data_keys[:test_size]
     test_validation_data = {key: test_validation_data[key] for key in test_validation_data_keys}
-    results = few_shot(train_data, test_validation_data, num_shots=1, verbose=True)
+    results = few_shot(train_data, test_validation_data, num_shots=0, verbose=True)
     print(results)

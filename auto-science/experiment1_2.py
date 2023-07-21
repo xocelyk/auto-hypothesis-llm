@@ -68,8 +68,7 @@ def main():
 
     num_icl_shots = 1
     # hypothesis_num_shots = 64
-    hypothesis = '- If the median income for households in a block is greater than $46,000,\n    - And the housing median age is less than or equal to 33,\n        - And the total number of rooms in the block is greater than 1850,\n            - Then the median house value for houses in this block is greater than $200,000.\n    - And the housing median age is greater than 33,\n        - Then the median house value for houses in this block is less than or equal to $200,000.\n- If the median income for households in a block is less than or equal to $46,000,\n    - Then the median house value for houses in this block is less than or equal to $200,000.\n\nThis decision tree hypothesis suggests that the median income would be the most important factor in predicting the median house value. If the median income is low, the median house value is also low. However, if the median income is high, other factors such as housing median age and total number of rooms become important in predicting the median house value.'
-
+    hypothesis = HYPOTHESIS
     result = test_hypothesis_one_example(hypothesis, num_shots=num_icl_shots, test_icl_data=test_icl_data, test_validation_data=test_validation_data[test_key])
 
     if result == 1:
@@ -84,7 +83,6 @@ def main():
     state_dict_proxy['test_keys_used'] = state_dict_proxy['test_keys_used'] + [test_key]
     print('correct:', state_dict_proxy['correct'], 'incorrect:', state_dict_proxy['incorrect'], 'invalid:', state_dict_proxy['invalid'], 'total:', state_dict_proxy['total'], 'test keys remaining:', len(state_dict_proxy['test_keys_remaining']), 'test keys used:', len(state_dict_proxy['test_keys_used']))
     save_state(state_dict_proxy)
-
 
 
 if __name__ == '__main__':

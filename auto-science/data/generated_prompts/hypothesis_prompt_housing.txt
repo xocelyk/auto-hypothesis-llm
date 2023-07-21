@@ -7,14 +7,770 @@ assistant: Yes I understand. I am Charlie, an AI housing price expert, and I wil
 user: Great! Let's begin :)
 
 user: Data:
-Longitude: -118.03
+Longitude: -121.49
+Latitude: 38.62
+Housing Median Age: 8
+Total Rooms: 15309
+Total Bedrooms: 2996.0
+Population: 7463
+Number Households: 2885
+Median Income ($): 39143
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.01
+Latitude: 37.69
+Housing Median Age: 20
+Total Rooms: 3275
+Total Bedrooms: 760.0
+Population: 1538
+Number Households: 705
+Median Income ($): 24800
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.24
+Latitude: 37.82
+Housing Median Age: 52
+Total Rooms: 3481
+Total Bedrooms: 751.0
+Population: 1444
+Number Households: 718
+Median Income ($): 39000
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.13
+Latitude: 34.09
+Housing Median Age: 21
+Total Rooms: 3862
+Total Bedrooms: 1186.0
+Population: 2773
+Number Households: 1102
+Median Income ($): 27816
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.67
+Latitude: 33.51
+Housing Median Age: 19
+Total Rooms: 1258
+Total Bedrooms: 246.0
+Population: 545
+Number Households: 227
+Median Income ($): 29762
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -120.35
+Latitude: 36.16
+Housing Median Age: 18
+Total Rooms: 1519
+Total Bedrooms: 296.0
+Population: 846
+Number Households: 272
+Median Income ($): 27792
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.35
+Latitude: 38.72
+Housing Median Age: 2
+Total Rooms: 21897
+Total Bedrooms: 3513.0
+Population: 8652
+Number Households: 2873
+Median Income ($): 45432
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.01
+Latitude: 34.01
+Housing Median Age: 15
+Total Rooms: 5592
+Total Bedrooms: 891.0
+Population: 2419
+Number Households: 840
+Median Income ($): 47193
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.84
+Latitude: 34.04
+Housing Median Age: 4
+Total Rooms: 9959
+Total Bedrooms: 1544.0
+Population: 4904
+Number Households: 1429
+Median Income ($): 69754
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -122.04
+Latitude: 37.97
+Housing Median Age: 21
+Total Rooms: 6445
+Total Bedrooms: 1839.0
+Population: 3621
+Number Households: 1735
+Median Income ($): 25841
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.04
+Latitude: 37.53
+Housing Median Age: 34
+Total Rooms: 2316
+Total Bedrooms: 478.0
+Population: 1524
+Number Households: 467
+Median Income ($): 37364
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.27
+Latitude: 37.87
+Housing Median Age: 34
+Total Rooms: 1010
+Total Bedrooms: 206.0
+Population: 678
+Number Households: 234
+Median Income ($): 29531
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.32
+Latitude: 33.86
+Housing Median Age: 32
+Total Rooms: 3485
+Total Bedrooms: 678.0
+Population: 1715
+Number Households: 649
+Median Income ($): 46563
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -121.71
+Latitude: 38.56
+Housing Median Age: 20
+Total Rooms: 8627
+Total Bedrooms: 1516.0
+Population: 4071
+Number Households: 1466
+Median Income ($): 42198
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -116.15
+Latitude: 33.69
+Housing Median Age: 22
+Total Rooms: 197
+Total Bedrooms: 54.0
+Population: 331
+Number Households: 70
+Median Income ($): 29286
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -119.73
+Latitude: 36.31
+Housing Median Age: 20
+Total Rooms: 2440
+Total Bedrooms: 433.0
+Population: 1579
+Number Households: 400
+Median Income ($): 28281
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.95
+Latitude: 33.63
+Housing Median Age: 17
+Total Rooms: 6745
+Total Bedrooms: 1547.0
+Population: 2688
+Number Households: 1535
+Median Income ($): 39917
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.81
+Latitude: 33.73
+Housing Median Age: 19
+Total Rooms: 4022
+Total Bedrooms: 975.0
+Population: 2334
+Number Households: 954
+Median Income ($): 30305
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.38
+Latitude: 33.97
+Housing Median Age: 43
+Total Rooms: 2715
+Total Bedrooms: 458.0
+Population: 1151
+Number Households: 434
+Median Income ($): 74897
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.55
+Latitude: 34.41
+Housing Median Age: 8
+Total Rooms: 21086
+Total Bedrooms: 3945.0
+Population: 9936
+Number Households: 3790
+Median Income ($): 58602
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.6
+Latitude: 34.26
+Housing Median Age: 18
+Total Rooms: 6154
+Total Bedrooms: 1070.0
+Population: 3010
+Number Households: 1034
+Median Income ($): 56392
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.12
+Latitude: 33.82
+Housing Median Age: 43
+Total Rooms: 1544
+Total Bedrooms: 286.0
+Population: 701
+Number Households: 298
+Median Income ($): 41375
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.18
+Latitude: 33.97
+Housing Median Age: 26
+Total Rooms: 6895
+Total Bedrooms: 1877.0
+Population: 8551
+Number Households: 1808
+Median Income ($): 23175
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.94
+Latitude: 38.27
+Housing Median Age: 35
+Total Rooms: 10869
+Total Bedrooms: 2226.0
+Population: 9879
+Number Households: 2152
+Median Income ($): 25681
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.46
+Latitude: 37.88
+Housing Median Age: 35
+Total Rooms: 2492
+Total Bedrooms: 409.0
+Population: 812
+Number Households: 373
+Median Income ($): 88386
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.89
+Latitude: 34.13
+Housing Median Age: 34
+Total Rooms: 2159
+Total Bedrooms: 386.0
+Population: 1443
+Number Households: 385
+Median Income ($): 41995
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.27
+Latitude: 37.51
+Housing Median Age: 36
+Total Rooms: 1406
+Total Bedrooms: 224.0
+Population: 598
+Number Households: 237
+Median Income ($): 58964
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.97
+Latitude: 33.89
+Housing Median Age: 14
+Total Rooms: 923
+Total Bedrooms: 136.0
+Population: 420
+Number Households: 130
+Median Income ($): 102252
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -121.94
+Latitude: 37.26
+Housing Median Age: 21
+Total Rooms: 3843
+Total Bedrooms: 716.0
+Population: 1850
+Number Households: 705
+Median Income ($): 46758
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.95
+Latitude: 33.71
+Housing Median Age: 20
+Total Rooms: 2781
+Total Bedrooms: 407.0
+Population: 1242
+Number Households: 408
+Median Income ($): 61092
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -121.87
+Latitude: 37.66
+Housing Median Age: 39
+Total Rooms: 522
+Total Bedrooms: 116.0
+Population: 161
+Number Households: 102
+Median Income ($): 24896
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -122.26
+Latitude: 37.85
+Housing Median Age: 50
+Total Rooms: 1120
+Total Bedrooms: 283.0
+Population: 697
+Number Households: 264
+Median Income ($): 21250
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -120.97
+Latitude: 37.64
+Housing Median Age: 42
+Total Rooms: 2359
+Total Bedrooms: 504.0
+Population: 1131
+Number Households: 480
+Median Income ($): 20833
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.79
+Latitude: 37.66
+Housing Median Age: 22
+Total Rooms: 14701
+Total Bedrooms: 2210.0
+Population: 6693
+Number Households: 2232
+Median Income ($): 59800
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -122.25
+Latitude: 37.77
+Housing Median Age: 43
+Total Rooms: 4329
+Total Bedrooms: 1110.0
+Population: 2086
+Number Households: 1053
+Median Income ($): 29750
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -121.43
+Latitude: 38.47
+Housing Median Age: 21
+Total Rooms: 1787
+Total Bedrooms: 291.0
+Population: 988
+Number Households: 301
+Median Income ($): 43500
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.2
+Latitude: 39.2
+Housing Median Age: 16
+Total Rooms: 1039
+Total Bedrooms: 182.0
+Population: 554
+Number Households: 184
+Median Income ($): 29688
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.64
+Latitude: 36.8
+Housing Median Age: 18
+Total Rooms: 5915
+Total Bedrooms: 1000.0
+Population: 2975
+Number Households: 975
+Median Income ($): 45812
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.18
+Latitude: 32.92
+Housing Median Age: 4
+Total Rooms: 15025
+Total Bedrooms: 2616.0
+Population: 7560
+Number Households: 2392
+Median Income ($): 51960
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -121.44
+Latitude: 38.46
+Housing Median Age: 10
+Total Rooms: 4446
+Total Bedrooms: 897.0
+Population: 2499
+Number Households: 884
+Median Income ($): 35461
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -116.51
+Latitude: 34.45
+Housing Median Age: 21
+Total Rooms: 8502
+Total Bedrooms: 2634.0
+Population: 2330
+Number Households: 991
+Median Income ($): 13811
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.19
+Latitude: 34.08
+Housing Median Age: 38
+Total Rooms: 1241
+Total Bedrooms: 298.0
+Population: 1055
+Number Households: 263
+Median Income ($): 23409
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.13
+Latitude: 33.92
+Housing Median Age: 36
+Total Rooms: 984
+Total Bedrooms: 183.0
+Population: 615
+Number Households: 206
+Median Income ($): 41786
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.72
+Latitude: 34.05
+Housing Median Age: 31
+Total Rooms: 2220
+Total Bedrooms: 526.0
+Population: 1662
+Number Households: 472
+Median Income ($): 27321
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -121.36
+Latitude: 38.56
+Housing Median Age: 20
+Total Rooms: 1232
+Total Bedrooms: 332.0
+Population: 667
+Number Households: 288
+Median Income ($): 18288
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.24
+Latitude: 34.02
+Housing Median Age: 48
+Total Rooms: 542
+Total Bedrooms: 150.0
+Population: 571
+Number Households: 114
+Median Income ($): 18485
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.79
 Latitude: 33.77
+Housing Median Age: 23
+Total Rooms: 3596
+Total Bedrooms: 451.0
+Population: 1292
+Number Households: 458
+Median Income ($): 85403
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -121.62
+Latitude: 39.09
+Housing Median Age: 21
+Total Rooms: 2693
+Total Bedrooms: 481.0
+Population: 1337
+Number Households: 435
+Median Income ($): 38534
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.26
+Latitude: 37.54
+Housing Median Age: 16
+Total Rooms: 2118
+Total Bedrooms: 333.0
+Population: 770
+Number Households: 318
+Median Income ($): 72477
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.33
+Latitude: 34.07
+Housing Median Age: 52
+Total Rooms: 1482
+Total Bedrooms: 171.0
+Population: 531
+Number Households: 161
+Median Income ($): 150001
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.36
+Latitude: 33.98
+Housing Median Age: 46
+Total Rooms: 1680
+Total Bedrooms: 453.0
+Population: 1570
+Number Households: 435
+Median Income ($): 20436
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -122.38
+Latitude: 40.54
+Housing Median Age: 36
+Total Rooms: 1216
+Total Bedrooms: 240.0
+Population: 647
+Number Households: 228
+Median Income ($): 26944
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.3
+Latitude: 34.18
+Housing Median Age: 13
+Total Rooms: 7174
+Total Bedrooms: 1997.0
+Population: 4293
+Number Households: 1872
+Median Income ($): 30973
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.11
+Latitude: 34.0
+Housing Median Age: 33
+Total Rooms: 2886
+Total Bedrooms: 726.0
+Population: 2650
+Number Households: 728
+Median Income ($): 26250
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.99
+Latitude: 33.68
+Housing Median Age: 18
+Total Rooms: 2024
+Total Bedrooms: 462.0
+Population: 1047
+Number Households: 451
+Median Income ($): 35848
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.13
+Latitude: 32.92
+Housing Median Age: 16
+Total Rooms: 1580
+Total Bedrooms: 241.0
+Population: 917
+Number Households: 261
+Median Income ($): 47266
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.76
+Latitude: 34.13
+Housing Median Age: 10
+Total Rooms: 4355
+Total Bedrooms: 716.0
+Population: 2030
+Number Households: 674
+Median Income ($): 65571
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -117.16
+Latitude: 34.26
 Housing Median Age: 27
-Total Rooms: 2000
-Total Bedrooms: 310.0
-Population: 880
-Number Households: 294
-Median Income ($): 56350
+Total Rooms: 9285
+Total Bedrooms: 1621.0
+Population: 1135
+Number Households: 410
+Median Income ($): 25446
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -118.3
+Latitude: 34.11
+Housing Median Age: 25
+Total Rooms: 1590
+Total Bedrooms: 218.0
+Population: 568
+Number Households: 206
+Median Income ($): 84389
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -118.14
+Latitude: 33.93
+Housing Median Age: 31
+Total Rooms: 3205
+Total Bedrooms: 727.0
+Population: 1647
+Number Households: 664
+Median Income ($): 33681
+
+assistant: (A) The median house value for houses in this block is greater than $200,000.
+
+user: Data:
+Longitude: -122.14
+Latitude: 38.01
+Housing Median Age: 50
+Total Rooms: 1760
+Total Bedrooms: 341.0
+Population: 741
+Number Households: 316
+Median Income ($): 45000
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -119.01
+Latitude: 35.37
+Housing Median Age: 33
+Total Rooms: 821
+Total Bedrooms: 181.0
+Population: 579
+Number Households: 172
+Median Income ($): 12469
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.2
+Latitude: 34.13
+Housing Median Age: 14
+Total Rooms: 3998
+Total Bedrooms: 711.0
+Population: 1509
+Number Households: 665
+Median Income ($): 34138
+
+assistant: (B) The median house value for houses in this block is less than or equal to $200,000.
+
+user: Data:
+Longitude: -117.81
+Latitude: 33.79
+Housing Median Age: 25
+Total Rooms: 5950
+Total Bedrooms: 1155.0
+Population: 4528
+Number Households: 1064
+Median Income ($): 42564
 
 assistant: (A) The median house value for houses in this block is greater than $200,000.
 

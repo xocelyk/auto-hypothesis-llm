@@ -1,0 +1,60 @@
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20, then we need to consider the following:
+  - If the total rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000. 
+
+This decision tree hypothesis suggests that the median income is the most important factor in determining the median house value for houses in a block. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then other factors such as housing median age and total rooms become important in determining the median house value.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20, then we need to consider the following:
+  - If the total rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000. 
+
+This decision tree hypothesis suggests that the median income is the most important factor in determining the median house value for houses in a block. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then other factors such as housing median age and total rooms become important in determining the median house value.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20, then we need to consider the following:
+  - If the total rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000. 
+
+This decision tree hypothesis suggests that the median income is the most important factor in determining the median house value for houses in a block. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then other factors such as housing median age and total rooms become important in determining the median house value.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20, then we need to consider the following:
+  - If the total rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000. 
+
+This decision tree hypothesis suggests that the median income is the most important factor in determining the median house value for houses in a block. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then other factors such as housing median age and total rooms become important in determining the median house value.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20, then we need to consider the following:
+  - If the total rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000. 
+
+This decision tree hypothesis suggests that the median income is the most important factor in determining the median house value for houses in a block. If the median income is high, then the median house value is likely to be high as well. However, if the median income is low, then other factors such as housing median age and total rooms become important in determining the median house value.
+
+

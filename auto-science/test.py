@@ -50,15 +50,16 @@ def test_hypothesis_one_example(hypothesis, num_shots=0, test_icl_data=None, tes
     prompt.append({"role": "user", "content": user_content_3})
     remind_hypothesis_text = 'Please use the hypothesis to make your prediction, explain your reasoning, and follow the answer template.'
     prompt.append({"role": "user", "content": remind_hypothesis_text})
-    response_text = get_response(prompt, temperature=0.7, timeout=TIMEOUT)[0]
+    response_text = get_response(prompt, temperature=0, timeout=TIMEOUT)[0]
     response = parse_response(response_text)
     if response == test_label:
-        return 1
+        correct = 1
     else:
         if response == -1:
-            return -1
+            correct = -1
         else:
-            return 0
+            correct = 0
+    return {'response': response, 'correct': correct, 'label': test_label, 'text': response_text}
 
 
 def test_hypothesis(hypothesis, num_shots=0, test_icl_data=None, test_validation_data=None, verbose=True):

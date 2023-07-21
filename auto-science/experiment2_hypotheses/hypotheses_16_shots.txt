@@ -1,0 +1,55 @@
+If the median income is greater than $50,000, then the median house value is likely to be greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then the housing median age and total rooms become important factors. 
+
+If the housing median age is less than or equal to 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are less than or equal to 2000, then the median house value is likely to be less than or equal to $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000 if the latitude is less than or equal to 37.79, and less than or equal to $200,000 if the latitude is greater than 37.79.
+
+
+If the median income is greater than $50,000, then the median house value is likely to be greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then the housing median age and total rooms become important factors. 
+
+If the housing median age is less than or equal to 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are less than or equal to 2000, then the median house value is likely to be less than or equal to $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000 if the latitude is less than or equal to 37.79, and less than or equal to $200,000 if the latitude is greater than 37.79.
+
+
+If the median income is greater than $50,000, then the median house value is likely to be greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then the housing median age and total rooms become important factors. 
+
+If the housing median age is less than or equal to 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are less than or equal to 2000, then the median house value is likely to be less than or equal to $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000 if the latitude is less than or equal to 37.79, and less than or equal to $200,000 if the latitude is greater than 37.79.
+
+
+If the median income is greater than $50,000, then the median house value is likely to be greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then the housing median age and total rooms become important factors. 
+
+If the housing median age is less than or equal to 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are less than or equal to 2000, then the median house value is likely to be less than or equal to $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000 if the latitude is less than or equal to 37.79, and less than or equal to $200,000 if the latitude is greater than 37.79.
+
+
+If the median income is greater than $50,000, then the median house value is likely to be greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then the housing median age and total rooms become important factors. 
+
+If the housing median age is less than or equal to 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are less than or equal to 2000, then the median house value is likely to be less than or equal to $200,000. 
+
+If the housing median age is greater than 25 years and the total rooms are greater than 2000, then the median house value is likely to be greater than $200,000 if the latitude is less than or equal to 37.79, and less than or equal to $200,000 if the latitude is greater than 37.79.
+
+

@@ -1,0 +1,50 @@
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20 years, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20 years, then we need to consider the following:
+  - If the total number of rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total number of rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20 years, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20 years, then we need to consider the following:
+  - If the total number of rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total number of rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20 years, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20 years, then we need to consider the following:
+  - If the total number of rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total number of rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20 years, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20 years, then we need to consider the following:
+  - If the total number of rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total number of rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000.
+
+
+If the median income is greater than $50,000, then the median house value for houses in this block is greater than $200,000. 
+
+If the median income is less than or equal to $50,000, then we need to consider the following:
+
+- If the housing median age is less than or equal to 20 years, then the median house value for houses in this block is greater than $200,000.
+- If the housing median age is greater than 20 years, then we need to consider the following:
+  - If the total number of rooms is greater than 3000, then the median house value for houses in this block is greater than $200,000.
+  - If the total number of rooms is less than or equal to 3000, then the median house value for houses in this block is less than or equal to $200,000.
+
+

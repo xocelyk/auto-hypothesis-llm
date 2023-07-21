@@ -82,7 +82,7 @@ def parse_response(response_string):
         return int('(A)' in response_string)
 
 
-def get_response(prompt, temperature=0.5, num_responses=1, timeout=10):
+def get_response(prompt, temperature=0, num_responses=1, timeout=10):
     response = openai.ChatCompletion.create(
         engine=deployment_name,
         messages=prompt,
